@@ -1,46 +1,44 @@
-// const matrix = [
-//     [0, 0, 1, 0, 0],
-//     [1, 0, 0, 0, 0],
-//     [0, 1, 0, 0, 0],
-//     [0, 0, 1, 0, 0],
-//     [1, 1, 0, 0, 0],
-//     [1, 1, 0, 0, 0],
-//     [1, 1, 0, 0, 0]
-// ];
-
-const matrix = [];
-let x = 12
-let y = 12
-for (let i = 0; i < x; i++) {
-    matrix[i] = [];
-    for (let j = 0; j < y; j++) {
-        matrix[i][j] = Math.floor(Math.random() * 2)
-    }
-}
-
-const side = 50;
-const empty_index = 0;
-const grass_index = 1;
-
+const matrix = genMatrix(5, 7);
 function setup() {
     frameRate(5);
-    createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#acacac');
+    createCanvas(matrix[0].length * SIDE, matrix.length * SIDE);
+    background("#acacac");
+
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] === GRASS_INDEX) {
+                const gr = new Grass(x, y, GRASS_INDEX);
+                GRASS_ARR.push(gr);
+            }
+            if (matrix[y][x] === GRASS_EATER_INDEX) {
+                const grassEt = new GrassEater(x, y, GRASS_EATER_INDEX)
+                GRASS_EATER_ARR.push(grassEt)
+            }
+
+        }
+    }
 }
 
 function draw() {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == grass_index) {
+            if (matrix[y][x] === GRASS_INDEX) {
                 fill("green");
-            }
-            else if (matrix[y][x] == empty_index) {
+            } else if (matrix[y][x] === EMPTY_INDEX) {
                 fill("#acacac");
+            } else if (matrix[y][x] === GRASS_EATER_INDEX) {
+                fill('yellow');
             }
-            rect(x * side, y * side, side, side);
-
-            /*fill("black")
-            text(x+" "+y, x*side+side/2,y*side+side/2)*/
+            rect(x * SIDE, y * SIDE, SIDE, SIDE);
         }
+    }
+
+    for (let i in GRASS_ARR) {
+        GRASS_ARR[i].mul();
+    }
+
+    for (let i in GRASS_EATER_ARR) {
+        GRASS_EATER_ARR[i].mul();
+        GRASS_EATER_ARR[i].move()
     }
 }

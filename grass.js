@@ -12,23 +12,34 @@ class Grass {
             [this.x + 1, this.y],
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
+            [this.x + 1, this.y + 1],
         ];
     }
 
     chooseCell(character) {
         let found = [];
         for (let i = 0; i < this.directions.length; i++) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if (matrix[y][x] == character) {
-                found.push(this.directions[i]);
+            const [x, y] = this.directions[i];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == character) {
+                    found.push(this.directions[i]);
+                }
             }
         }
         return found;
     }
-}
 
-const gr = new Grass(1, 2, 1);
-let emptyCells = gr.chooseCell(0);
-console.log(emptyCells)
+    mul() {
+        this.multiply++;
+        //p5 random returs undefined from empty array
+        const newEmptyCells = random(this.chooseCell(EMPTY_INDEX))
+
+        if (newEmptyCells && this.multiply >= 8) {
+            const [x, y] = newEmptyCells
+            matrix[y][x] = GRASS_INDEX
+            const gr = new Grass(x, y, GRASS_INDEX)
+            GRASS_ARR.push(gr)
+            this.multiply = 0
+        }
+    }
+}
