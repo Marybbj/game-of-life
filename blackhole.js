@@ -1,4 +1,4 @@
-class GrassEater {
+class BlackHole {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -33,38 +33,14 @@ class GrassEater {
         return found;
     }
 
-    mul() {
-        const newEmptyCells = random(this.chooseCell(EMPTY_INDEX));
-        if (newEmptyCells && this.energy >= 8) {
-            const [x, y] = newEmptyCells;
-            matrix[y][x] = GRASS_EATER_INDEX;
-            const gr = new GrassEater(x, y, GRASS_EATER_INDEX);
-            GRASS_EATER_ARR.push(gr);
-            this.energy = 0;
-        }
-    }
-
-    move() {
+    hole() {
         this.getNewCoordinates();
-        const newEmptyCells = random(this.chooseCell(EMPTY_INDEX));
-        if (newEmptyCells) {
-            const [x, y] = newEmptyCells;
+        const GrassCells = random(this.chooseCell(GRASS_INDEX));
+        const GrassEaterCells = random(this.chooseCell(GRASS_EATER_INDEX));
+        if (GrassCells) {
+            const [x, y] = GrassCells;
             matrix[this.y][this.x] = EMPTY_INDEX;
-            matrix[y][x] = GRASS_EATER_INDEX;
-
-            this.x = x;
-            this.y = y;
-            --this.energy;
-        }
-    }
-
-    eat() {
-        this.getNewCoordinates();
-        const newGrassCells = random(this.chooseCell(GRASS_INDEX));
-        if (newGrassCells) {
-            const [x, y] = newGrassCells;
-            matrix[this.y][this.x] = EMPTY_INDEX;
-            matrix[y][x] = GRASS_EATER_INDEX;
+            matrix[y][x] = BLACK_HOLE_INDEX;
 
             for (let i in GRASS_ARR) {
                 if (x === GRASS_ARR[i].x && y === GRASS_ARR[i].y) {
@@ -74,20 +50,22 @@ class GrassEater {
             }
             this.x = x;
             this.y = y;
-            this.energy += 2;
-        } else {
-            // this.move()
         }
-    }
-    die() {
-        if (this.energy <= 0) {
+
+        if (GrassEaterCells) {
+            const [x, y] = GrassEaterCells;
             matrix[this.y][this.x] = EMPTY_INDEX;
-            for (let i in GRASS_EATER_INDEX) {
-                if (x === GRASS_EATER_INDEX[i].x && y === GRASS_EATER_INDEX[i].y) {
-                    GRASS_EATER_INDEX.splice(i, 1);
+            matrix[y][x] = BLACK_HOLE_INDEX;
+
+            for (let i in GRASS_EATER_ARR) {
+                if (x === GRASS_EATER_ARR[i].x && y === GRASS_EATER_ARR[i].y) {
+                    GRASS_EATER_ARR.splice(i, 1);
                     break;
                 }
             }
+            this.x = x;
+            this.y = y;
         }
     }
 }
+

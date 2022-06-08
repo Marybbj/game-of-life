@@ -1,6 +1,22 @@
-const SIDE = 120;
+const SIDE = 30;
 const EMPTY_INDEX = 0;
+
 const GRASS_INDEX = 1;
-const GRASS_EATER_INDEX = 2
 const GRASS_ARR = [];
-const GRASS_EATER_ARR = []
+const GRASS_COUNT = 90;
+
+const GRASS_EATER_INDEX = 2;
+const GRASS_EATER_ARR = [];
+const GRASS_EATER_COUNT = 10;
+
+const GRASS_EATER_PREDATOR_INDEX = 3;
+const GRASS_EATER_PREDATOR_ARR = [];
+const GRASS_EATER_PREDATOR_COUNT = 2;
+
+const BOMB_INDEX = 4;
+const BOMB_ARR = [];
+const BOMB_COUNT = 1;
+
+const BLACK_HOLE_INDEX = 5;
+const BLACK_HOLE_ARR = [];
+const BLACK_HOLE_COUNT = 4;

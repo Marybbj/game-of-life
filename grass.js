@@ -31,7 +31,6 @@ class Grass {
 
     mul() {
         this.multiply++;
-        //p5 random returs undefined from empty array
         const newEmptyCells = random(this.chooseCell(EMPTY_INDEX))
 
         if (newEmptyCells && this.multiply >= 8) {
