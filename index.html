@@ -10,8 +10,23 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="btn">
+            <button id="restart">restrat</button>
+            <button id="end">end</button>
+        </div>
 
 
+        <form action="" id="matrix">
+            <p>matrix size</p>
+            <input type="radio" id="xs" value="50x50" name="size" checked>
+            <label for="xs">50x50</label><br>
+            <input type="radio" id="s" value="70x70" name="size">
+            <label for="s">70x70</label><br>
+            <input type="radio" id="m" value="90x90" name="size">
+            <label for="m">90x90</label>
+        </form>
+    </div>
 
     <script src="consts.js"></script>
     <script src="utils.js"></script>
@@ -21,6 +36,9 @@
     <script src="grassEaterPredator.js"></script>
     <script src="bomb.js"></script>
     <script src="blackhole.js"></script>
+    <script src="matrixSize.js"></script>
+    <script src="restartGame.js"></script>
+    <script src="endGame.js"></script>
 
 </body>
 

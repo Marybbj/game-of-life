@@ -41,6 +41,17 @@ class Bomb {
         return found;
     }
 
+    FindAndRemove(cells, arr) {
+        const [x, y] = cells;
+        matrix[y][x] = EMPTY_INDEX;
+        for (let i in arr) {
+            if (x === arr[i].x && y === arr[i].y) {
+                arr.splice(i, 1);
+                break;
+            }
+        }
+    }
+
     bombLine() {
         this.getNewCoordinates();
         const GrassCells = random(this.chooseCell(GRASS_INDEX));
@@ -49,53 +60,16 @@ class Bomb {
         const BlackHoleCells = random(this.chooseCell(BLACK_HOLE_INDEX));
 
         if (GrassCells) {
-            const [x, y] = GrassCells;
-            matrix[this.y][this.x] = EMPTY_INDEX;
-            matrix[y][x] = EMPTY_INDEX;
-            for (let i in GRASS_ARR) {
-                if (x === GRASS_ARR[i].x && y === GRASS_ARR[i].y) {
-                    GRASS_ARR.splice(i, 1);
-                    break;
-                }
-            }
-        } else if (GrassEaterCells) {
-            const [x, y] = GrassEaterCells;
-            matrix[this.y][this.x] = EMPTY_INDEX;
-            matrix[y][x] = EMPTY_INDEX;
-            for (let i in GRASS_EATER_ARR) {
-                if (x === GRASS_EATER_ARR[i].x && y === GRASS_EATER_ARR[i].y) {
-                    GRASS_EATER_ARR.splice(i, 1);
-                    break;
-                }
-            }
-        } else if (GrassEaterPredatorCells) {
-            const [x, y] = GrassEaterPredatorCells;
-            matrix[this.y][this.x] = EMPTY_INDEX;
-            matrix[y][x] = EMPTY_INDEX;
-            for (let i in GRASS_EATER_PREDATOR_ARR) {
-                if (x === GRASS_EATER_PREDATOR_ARR[i].x && y === GRASS_EATER_PREDATOR_ARR[i].y) {
-                    GRASS_EATER_PREDATOR_ARR.splice(i, 1);
-                    break;
-                }
-            }
-        } else if (BlackHoleCells) {
-            const [x, y] = BlackHoleCells;
-            matrix[this.y][this.x] = EMPTY_INDEX;
-            matrix[y][x] = EMPTY_INDEX;
-            for (let i in BLACK_HOLE_ARR) {
-                if (x === BLACK_HOLE_ARR[i].x && y === BLACK_HOLE_ARR[i].y) {
-                    BLACK_HOLE_ARR.splice(i, 1);
-                    break;
-                }
-            }
+            this.FindAndRemove(GrassCells, GRASS_ARR)
         }
-
-        for (let i = 0; i < matrix.length; i++) {
-            var a = Math.floor(matrix[i].length / 2)
-            var b = Math.floor(matrix.length / 2)
-            matrix[b][a] = 4
-            this.x = a;
-            this.y = b;
+        if (GrassEaterCells) {
+            this.FindAndRemove(GrassEaterCells, GRASS_EATER_ARR)
+        }
+        if (GrassEaterPredatorCells) {
+            this.FindAndRemove(GrassEaterPredatorCells, GRASS_EATER_PREDATOR_ARR)
+        }
+        if (BlackHoleCells) {
+            this.FindAndRemove(BlackHoleCells, BLACK_HOLE_ARR)
         }
     }
 }

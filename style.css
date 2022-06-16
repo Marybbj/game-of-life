@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+}
+
+canvas {
+    display: flex;
+    margin: 20px auto;
+}
+
+form {
+    margin-top: 20px;
+    color: #acacac;
+}
+
+.container {
+    margin: 20px;
+}
+
+.matrix {
+    margin-top: 20px;
+}
+
+.btn>button {
+    min-width: 100px;
+    height: 40px;
+    border: unset;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn>button:hover {
+    opacity: 0.95;
+}
+
+#restart {
+    background-color: #008000cc;
+}
+
+#end {
+    background-color: #ff0100cc;
+}

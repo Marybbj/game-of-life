@@ -38,6 +38,7 @@ function setCentreddValue(matrix, index) {
     }
 }
 
+
 function genMatrix(x, y) {
     const matrix = [];
     for (let i = 0; i < x; i++) {
@@ -53,5 +54,4 @@ function genMatrix(x, y) {
     setFixedValue(matrix, BLACK_HOLE_INDEX)
 
     return matrix
-
 }
