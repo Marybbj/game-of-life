@@ -15,19 +15,17 @@
             <button id="restart">restrat</button>
             <button id="end">end</button>
         </div>
-
-
-        <form action="" id="matrix">
-            <p>matrix size</p>
-            <input type="radio" id="xs" value="50x50" name="size" checked>
-            <label for="xs">50x50</label><br>
-            <input type="radio" id="s" value="70x70" name="size">
-            <label for="s">70x70</label><br>
-            <input type="radio" id="m" value="90x90" name="size">
-            <label for="m">90x90</label>
-        </form>
+        <div class="matrix">
+            <label for="matrix">Choose Matrix Size:</label>
+            <select name="matrixSize" id="matrixSize" onchange="setup()">
+                <option value="20x18">20x18</option>
+                <option value="24x22">24x22</option>
+                <option value="28x26">28x26</option>
+            </select>
+        </div>
     </div>
 
+    <script src="livingCreature.js"></script>
     <script src="consts.js"></script>
     <script src="utils.js"></script>
     <script src="script.js"></script>
@@ -36,9 +34,6 @@
     <script src="grassEaterPredator.js"></script>
     <script src="bomb.js"></script>
     <script src="blackhole.js"></script>
-    <script src="matrixSize.js"></script>
-    <script src="restartGame.js"></script>
-    <script src="endGame.js"></script>
 
 </body>
 

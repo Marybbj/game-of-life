@@ -12,17 +12,15 @@ canvas {
     margin: 20px auto;
 }
 
-form {
-    margin-top: 20px;
-    color: #acacac;
-}
-
 .container {
     margin: 20px;
 }
 
 .matrix {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .btn>button {

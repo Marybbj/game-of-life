@@ -1,10 +1,4 @@
-class GrassEaterPredator {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.directions = [];
-    }
+class GrassEaterPredator extends LivingCreature {
 
     getNewCoordinates() {
         this.directions = [
@@ -20,20 +14,11 @@ class GrassEaterPredator {
     }
 
     chooseCell(character) {
-        let found = [];
-        for (let i = 0; i < this.directions.length; i++) {
-            const [x, y] = this.directions[i];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        this.getNewCoordinates();
+        return super.chooseCell(character);
     }
 
     move() {
-        this.getNewCoordinates();
         const newEmptyCells = random(this.chooseCell(EMPTY_INDEX));
         if (newEmptyCells) {
             const [x, y] = newEmptyCells;
@@ -46,7 +31,6 @@ class GrassEaterPredator {
     }
 
     eat() {
-        this.getNewCoordinates();
         const newGrassEaterCells = random(this.chooseCell(GRASS_EATER_INDEX));
         if (newGrassEaterCells) {
             const [x, y] = newGrassEaterCells;

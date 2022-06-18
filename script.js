@@ -1,6 +1,14 @@
-const matrix = genMatrix(24, 20);
+function getSelectSize() {
+    return document.getElementById("matrixSize").value;
+}
+
 function setup() {
     frameRate(5);
+    const matrixSize = getSelectSize().split('x');
+    const a = parseInt(matrixSize[0])
+    const b = parseInt(matrixSize[1])
+    matrix = genMatrix(a, b);
+
     createCanvas(matrix[0].length * SIDE, matrix.length * SIDE);
     background("#acacac");
 
@@ -75,3 +83,32 @@ function draw() {
         BLACK_HOLE_ARR[i].hole();
     }
 }
+
+function restartGame() {
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix[y].length; x++) {
+            matrix[y][x] = 0
+        }
+    }
+}
+
+const restart = document.getElementById('restart')
+restart.addEventListener("click", function () {
+    restartGame()
+})
+
+function endGame() {
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix[y].length; x++) {
+            matrix[y][x] = EMPTY_INDEX
+            // matrix.splice(x, 1);
+            // matrix.splice(y, 1);
+        }
+    }
+    alert('bye bye')
+}
+
+const end = document.getElementById('end')
+end.addEventListener("click", function () {
+    endGame()
+})
