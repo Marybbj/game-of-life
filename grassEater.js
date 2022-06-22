@@ -62,8 +62,6 @@ class GrassEater extends LivingCreature {
             this.x = x;
             this.y = y;
             this.energy += 2;
-        } else {
-            // this.move()
         }
     }
     die() {

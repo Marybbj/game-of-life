@@ -10,7 +10,7 @@ function setup() {
     matrix = genMatrix(a, b);
 
     createCanvas(matrix[0].length * SIDE, matrix.length * SIDE);
-    background("#acacac");
+    background("white");
 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
@@ -43,7 +43,7 @@ function draw() {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] === EMPTY_INDEX) {
-                fill("#acacac");
+                fill("white");
             } else if (matrix[y][x] === GRASS_INDEX) {
                 fill("green");
             } else if (matrix[y][x] === GRASS_EATER_INDEX) {
@@ -84,28 +84,22 @@ function draw() {
     }
 }
 
-function restartGame() {
-    for (let y = 0; y < matrix.length; y++) {
-        for (let x = 0; x < matrix[y].length; x++) {
-            matrix[y][x] = 0
-        }
-    }
-}
-
 const restart = document.getElementById('restart')
 restart.addEventListener("click", function () {
-    restartGame()
+    setup()
 })
 
 function endGame() {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             matrix[y][x] = EMPTY_INDEX
-            // matrix.splice(x, 1);
-            // matrix.splice(y, 1);
         }
     }
-    alert('bye bye')
+    GRASS_ARR.length = 0
+    GRASS_EATER_ARR.length = 0
+    GRASS_EATER_PREDATOR_ARR.length = 0
+    BOMB_ARR.length = 0
+    BLACK_HOLE_ARR.length = 0
 }
 
 const end = document.getElementById('end')
